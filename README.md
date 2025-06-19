@@ -32,6 +32,9 @@ graph TD
 - **Backend:** Node.js, Express, MongoDB (Mongoose), JWT, bcrypt
 - **DevOps:** Docker, Nginx (for frontend static serving)
 
+## Url
+- The deployed frontend url - https://task-manager-ten-green.vercel.app/
+
 ## Features
 - User registration and login (JWT access & refresh tokens)
 - Secure authentication and protected dashboard
