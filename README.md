@@ -15,16 +15,16 @@ graph TD
     JWT[JWT Middleware]
     BE --> AUTH
     BE --> TASK
-    AUTH --> JWT
-    TASK --> JWT
+    AUTH -- Uses --> JWT
+    TASK -- Uses --> JWT
   end
   subgraph Database
     DB[(MongoDB Atlas)]
   end
   FE -- Axios HTTP --> BE
   BE -- Mongoose ODM --> DB
-  AUTH -- User CRUD --> DB
-  TASK -- Task CRUD --> DB
+  AUTH -- Manages User Data --> DB
+  TASK -- Manages Task Data --> DB
 ```
 
 ## Tech Stack
