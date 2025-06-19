@@ -6,7 +6,7 @@ A full-stack, production-ready MERN Task Manager application with JWT authentica
 ```mermaid
 graph TD
   subgraph Frontend
-    FE[React (Vite, Tailwind, Framer Motion, Toast)]
+    FE["React (Vite, Tailwind, Framer Motion, Toast)"]
   end
   subgraph Backend
     BE[Node.js/Express API]
