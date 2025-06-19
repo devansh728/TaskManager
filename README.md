@@ -5,13 +5,26 @@ A full-stack, production-ready MERN Task Manager application with JWT authentica
 ## Architecture Diagram
 ```mermaid
 graph TD
-  A[React Frontend (Vite, Tailwind, Framer Motion, Toast)] -- Axios HTTP --> B[Node.js/Express Backend]
-  B -- Mongoose ODM --> C[(MongoDB Atlas)]
-  B -- JWT Auth --> D[User]
-  subgraph Docker
-    A
-    B
+  subgraph Frontend
+    FE[React (Vite, Tailwind, Framer Motion, Toast)]
   end
+  subgraph Backend
+    BE[Node.js/Express API]
+    AUTH[Auth Controller]
+    TASK[Task Controller]
+    JWT[JWT Middleware]
+    BE --> AUTH
+    BE --> TASK
+    AUTH --> JWT
+    TASK --> JWT
+  end
+  subgraph Database
+    DB[(MongoDB Atlas)]
+  end
+  FE -- Axios HTTP --> BE
+  BE -- Mongoose ODM --> DB
+  AUTH -- User CRUD --> DB
+  TASK -- Task CRUD --> DB
 ```
 
 ## Tech Stack
