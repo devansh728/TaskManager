@@ -10,7 +10,27 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+const allowedOrigins = process.env.FRONTEND_URL ? process.env.FRONTEND_URL.split(',') : [];
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin) {
+      return callback(null, true);
+    }
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    if (origin.startsWith('http://localhost:')) {
+        return callback(null, true);
+    }
+
+    const error = new Error(`CORS policy: Origin '${origin}' not allowed.`);
+    error.status = 403;
+    return callback(error, false);
+  },
+  credentials: true, 
+}));
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
